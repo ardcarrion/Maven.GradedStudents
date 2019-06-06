@@ -12,20 +12,20 @@ public class ClassroomTest {
         Student s1 = new Student("student", "one", s1Scores);
         Student s2 = new Student("student", "two", s2Scores);
 
-        Student[] students = new Student{s1,s2};
+        Student[] students = {s1,s2};
         Classroom classroom = new Classroom(students);
 
         // When
         double actual = classroom.getAverageExamScore();
         double expected = 125.0;
-        Assert.assertEquals(expected, actual);
+        Assert.assertEquals(expected, actual, .01);
     }
 
     @Test
     public void addStudent() {
         int maxNumberOfStudents = 1;
         Classroom classroom = new Classroom(maxNumberOfStudents);
-        Double[] examScores = { 100.0, 150.0, 250.0, 0 };
+        Double[] examScores = { 100.0, 150.0, 250.0, 0.0 };
         Student student = new Student("Leon", "Hunter", examScores);
     }
 

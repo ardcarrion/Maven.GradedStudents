@@ -53,7 +53,9 @@ public class StudentTest {
 
         // When
         student.addExamScore(100.0);
-        String output = student.getExamScores();
+        String actual = student.getExamScores();
+        String expected = "Exam Scores:\n" + "Exam 1 -> 100\n";
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
@@ -66,7 +68,10 @@ public class StudentTest {
 
         // When
         student.setExamScore(1, 150.0);
-        String output = student.getExamScores();
+
+        String actual = student.getExamScores();
+        String expected = "Exam Scores:\n" + "\tExam 1 -> 150\n";
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
@@ -79,7 +84,7 @@ public class StudentTest {
 
         // When
         String actual = student.getExamScores();
-        String expected =  "Exam Scores:\nExam 1 -> 100\nExam 2 -> 95\nExam 3 -> 123\nExam 4 -> 96";
+        String expected =  "Exam Scores:\n\tExam 1 -> 100\n\tExam 2 -> 95\n\tExam 3 -> 123\n\tExam 4 -> 96\n";
         Assert.assertEquals(expected, actual);
 
     }
@@ -94,7 +99,7 @@ public class StudentTest {
 
         // When
         String actual = student.toString();
-        String expected = "Student Name: Leon Hunter\n Average Score: 125 \nExam Scores:\n Exam 1 -> 100\nExam 2 -> 150 \nExam 3 -> 250 \nExam 4 -> 0";
+        String expected = "Student Name: Leon Hunter\nAverage Score: 125\nExam Scores:\n\tExam 1 -> 100\n\tExam 2 -> 150\n\tExam 3 -> 250\n\tExam 4 -> 0\n";
         Assert.assertEquals(expected, actual);
     }
 }

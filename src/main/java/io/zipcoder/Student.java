@@ -24,7 +24,8 @@ public class Student {
         StringBuilder result = new StringBuilder("Exam Scores:\n");
         int count = 1;
         for (Double score : examScores) {
-            result.append(String.format("Exam %d -> %f\n", count, score));
+            result.append(String.format("\tExam %d -> %.0f\n", count, score));
+            count++;
         }
         return result.toString();
     }
@@ -61,7 +62,7 @@ public class Student {
     }
 
     public void setExamScore(int examNumber, double newScore) {
-        examScores.set(examNumber, newScore);
+        examScores.set(examNumber-1, newScore);
     }
 
 
@@ -73,7 +74,7 @@ public class Student {
     @Override
     public String toString(){
         StringBuilder result = new StringBuilder("Student Name: " + firstName + " " + lastName);
-        result.append(String.format("Average Score: %f", getAverageExamScore()));
+        result.append(String.format("\nAverage Score: %.0f\n", getAverageExamScore()));
         result.append(getExamScores());
         return result.toString();
     }

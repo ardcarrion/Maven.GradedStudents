@@ -34,22 +34,25 @@ public class Classroom {
             System.out.println("The classroom is full!");
             return;
         }
+        int count = 0;
         for (Student s : students) {
-            if (s.equals(null)) {
-                s.setFirstName(student.getFirstName());
-                s.setLastName(student.getLastName());
-                s.setExamScores(student.getExamScoresArray());
-                break;
+            if (s == null) {
+                students[count] = student;
+                return;
             }
+            count++;
         }
 
     }
 
     public void removeStudent(Student student) {
+        int count = 0;
         for (Student s : students) {
+
             if (student.equals(s))  {
-                s = null;
+                students[count] = null;
             }
+            count++;
         }
     }
 
