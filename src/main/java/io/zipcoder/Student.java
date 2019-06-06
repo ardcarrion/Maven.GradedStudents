@@ -56,7 +56,8 @@ public class Student {
     }
 
     public Double[] getExamScoresArray() {
-        return examScores;
+        Double[] scores = new Double[examScores.size()];
+        return examScores.toArray(scores);
     }
 
     public void setExamScore(int examNumber, double newScore) {
@@ -64,8 +65,9 @@ public class Student {
     }
 
 
-    public void setExamScores(ArrayList<Double> examScores) {
-        this.examScores = examScores;
+    public void setExamScores(Double[] scores) {
+        ArrayList<Double> grades = new ArrayList<Double>(Arrays.asList(scores));
+        this.examScores = grades;
     }
 
     @Override

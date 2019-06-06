@@ -29,11 +29,16 @@ public class Classroom {
         return sum/students.length;
     }
 
-    public void addStudent(Student student){
+    public void addStudent(Student student) {
+        if (students[students.length-1] != null) {
+            System.out.println("The classroom is full!");
+            return;
+        }
         for (Student s : students) {
             if (s.equals(null)) {
                 s.setFirstName(student.getFirstName());
                 s.setLastName(student.getLastName());
+                s.setExamScores(student.getExamScoresArray());
                 break;
             }
         }
@@ -41,22 +46,44 @@ public class Classroom {
     }
 
     public void removeStudent(Student student) {
-
+        for (Student s : students) {
+            if (student.equals(s))  {
+                s = null;
+            }
+        }
     }
 
     public Student[] getStudentsByScore() {
-        TreeSet sorted = new TreeSet(Arrays.asList(students));
-        ArrayList<Student> temp = new ArrayList<>(students.length);
-        temp.addAll(sorted);
-        Student[] result = new Student[students.length];
-        return temp.toArray(result);
+        Comparator<Student> studentComparator = Comparator.comparing(Student::getAverageExamScore);
+        Student[] sorted = students.clone();
+        Arrays.sort(sorted, studentComparator);
+        return sorted;
     }
 
 
+
+    public HashMap getGradeBook() {
+        HashMap map = new HashMap(students.length*2);
+        for (Student s : students) {
+            map.put(s, getGrade(s.getAverageExamScore()));
+        }
+        return map;
     }
 
 
-    public Map getGradeBook() {}
+    private String getGrade(Double studentAverage) {
+        Student[] sortedStudents = getStudentsByScore();
+        Integer total = students.length;
+        int indexA = (int)Math.floor((10.0/100)*total+1);
+        int indexB = (int)Math.floor((29.0/100)*total+1);
+        int indexC = (int)Math.floor((30.0/100)*total+1);
+        int indexD = (int)Math.floor((12.0/100)*total+1);
+        if (studentAverage > sortedStudents[indexA].getAverageExamScore()) return "A";
+        else if(studentAverage > sortedStudents[indexB].getAverageExamScore()) return "B";
+        else if (studentAverage > sortedStudents[indexC].getAverageExamScore()) return "C";
+        else if (studentAverage > sortedStudents[indexD].getAverageExamScore()) return "D";
+        return "F";
+    }
 
 
 }
