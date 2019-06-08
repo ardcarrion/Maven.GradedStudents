@@ -67,8 +67,7 @@ public class Student {
 
 
     public void setExamScores(Double[] scores) {
-        ArrayList<Double> grades = new ArrayList<Double>(Arrays.asList(scores));
-        this.examScores = grades;
+        this.examScores = new ArrayList<Double>(Arrays.asList(scores));
     }
 
     @Override

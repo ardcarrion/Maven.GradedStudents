@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.Map;
 
 public class ClassroomTest {
     @Test
@@ -60,7 +61,26 @@ public class ClassroomTest {
     }
 
     @Test
-    public void getStudentsByScore() {
+    public void getStudentsByScoreTest1() {
+        Double[] s1Scores = { 90.0, 150.0 }; //120
+        Double[] s2Scores = { 145.0, 25.0 }; //85
+
+        Student s1 = new Student("Ali", "Baba", s1Scores);
+        Student s2 = new Student("Cara", "Dodo", s2Scores);
+
+        Student[] students = {s2,s1};
+        Classroom classroom = new Classroom(students);
+
+        // When
+        Student[] expected = {s1, s2};
+        Student[] actual = classroom.getStudentsByScore();
+        Assert.assertArrayEquals(expected, actual);
+    }
+
+
+
+    @Test
+    public void getStudentsByScoreTest2() {
         Double[] s1Scores = { 90.0, 150.0 }; //120
         Double[] s2Scores = { 145.0, 25.0 }; //85
         Double[] s3Scores = { 105.0, 135.0 }; //120
@@ -79,6 +99,55 @@ public class ClassroomTest {
     }
 
     @Test
-    public void getGradeBook() {
+    public void getStudentsByScoreTest3() {
+        Double[] s1Scores = { 90.0, 150.0 }; //120
+        Double[] s2Scores = { 145.0, 25.0 }; //85
+        Double[] s3Scores = { 105.0, 135.0 }; //120
+
+        Student s1 = new Student("Ali", "Baba", s1Scores);
+        Student s2 = new Student("Cara", "Dodo", s2Scores);
+        Student s3 = new Student("Ali", "Frank", s3Scores);
+
+        Student[] students = {s1,s2, s3};
+        Classroom classroom = new Classroom(students);
+
+        // When
+        Student[] expected = {s1, s3, s2};
+        Student[] actual = classroom.getStudentsByScore();
+        Assert.assertArrayEquals(expected, actual);
     }
+
+    @Test
+    public void getGradeBook() {
+        Double[] s1Scores = { 100.0, 150.0 };
+        Double[] s2Scores = { 225.0, 25.0 };
+        Double[] s3Scores = { 90.0, 150.0 }; //120
+        Double[] s4Scores = { 145.0, 25.0 }; //85
+        Double[] s5Scores = { 105.0, 135.0 }; //120
+
+        Double[] s6Scores = { 110.0, 150.0 };
+        Double[] s7Scores = { 215.0, 25.0 };
+        Double[] s8Scores = { 91.0, 150.0 };
+        Double[] s9Scores = { 115.0, 25.0 };
+        Double[] s10Scores = { 115.0, 135.0 };
+
+        Student s1 = new Student("student", "one", s1Scores);
+        Student s2 = new Student("student", "two", s2Scores);
+        Student s3 = new Student("Ali", "Baba", s3Scores);
+        Student s4 = new Student("Cara", "Dodo", s4Scores);
+        Student s5 = new Student("Eli", "Frank", s5Scores);
+
+        Student s6 = new Student("student", "one", s6Scores);
+        Student s7 = new Student("student", "two", s7Scores);
+        Student s8 = new Student("Ali", "Baba", s8Scores);
+        Student s9 = new Student("Cara", "Dodo", s9Scores);
+        Student s10 = new Student("Eli", "Frank", s10Scores);
+
+
+        Student[] students = {s1,s2, s3, s4, s5, s6, s7, s8, s9, s10};
+        Classroom classroom = new Classroom(students);
+        Map actual = classroom.getGradeBook();
+    }
+
+
 }

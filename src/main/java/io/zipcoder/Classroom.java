@@ -70,6 +70,7 @@ public class Classroom {
         for (Student s : students) {
             map.put(s, getGrade(s.getAverageExamScore()));
         }
+        System.out.println(map.toString());
         return map;
     }
 
@@ -81,10 +82,10 @@ public class Classroom {
         int indexB = (int)Math.floor((29.0/100)*total+1);
         int indexC = (int)Math.floor((30.0/100)*total+1);
         int indexD = (int)Math.floor((12.0/100)*total+1);
-        if (studentAverage > sortedStudents[indexA].getAverageExamScore()) return "A";
-        else if(studentAverage > sortedStudents[indexB].getAverageExamScore()) return "B";
-        else if (studentAverage > sortedStudents[indexC].getAverageExamScore()) return "C";
-        else if (studentAverage > sortedStudents[indexD].getAverageExamScore()) return "D";
+        if (studentAverage >= sortedStudents[indexA].getAverageExamScore()) return "A";
+        else if(studentAverage >= sortedStudents[indexB].getAverageExamScore()) return "B";
+        else if (studentAverage >= sortedStudents[indexC].getAverageExamScore()) return "C";
+        else if (studentAverage >= sortedStudents[indexD].getAverageExamScore()) return "D";
         return "F";
     }
 
