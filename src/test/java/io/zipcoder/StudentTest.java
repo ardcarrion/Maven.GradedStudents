@@ -37,10 +37,26 @@ public class StudentTest {
 
     @Test
     public void getExamScoresArrayTest() {
+        Double[] expected = {95.0, 85.0, 99.0};
+        String firstName = "Ben";
+        String lastName = "Cabana";
+        Student student = new Student(firstName, lastName, expected);
+
+
+        Double[] actual = student.getExamScoresArray();
+        Assert.assertArrayEquals(expected, actual);
     }
 
     @Test
     public void getAverageExamScoreTest() {
+        Double[] examScores = {95.0, 85.0, 99.0};
+        String firstName = "Ben";
+        String lastName = "Cabana";
+        Student student = new Student(firstName, lastName, examScores);
+
+        Double expected = 93.0;
+        Double actual = student.getAverageExamScore();
+        Assert.assertEquals(expected, actual, .001);
     }
 
     @Test
@@ -53,9 +69,9 @@ public class StudentTest {
 
         // When
         student.addExamScore(100.0);
-        String actual = student.getExamScores();
-        String expected = "Exam Scores:\n" + "Exam 1 -> 100\n";
-        Assert.assertEquals(expected, actual);
+        Double[] expected = {100.0};
+        Double[] actual = student.getExamScoresArray();
+        Assert.assertArrayEquals(expected, actual);
     }
 
     @Test

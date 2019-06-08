@@ -57,9 +57,9 @@ public class Classroom {
     }
 
     public Student[] getStudentsByScore() {
-        Comparator<Student> studentComparator = Comparator.comparing(Student::getAverageExamScore);
+        Comparator<Student> comparator = (Comparator<Student>) new StudentComparator();
         Student[] sorted = students.clone();
-        Arrays.sort(sorted, studentComparator);
+        Arrays.sort(sorted, comparator);
         return sorted;
     }
 
