@@ -70,7 +70,6 @@ public class Classroom {
         for (Student s : students) {
             map.put(s, getGrade(s.getAverageExamScore()));
         }
-        System.out.println(map.toString());
         return map;
     }
 
